@@ -53,6 +53,7 @@ export const prepareColumns = <TData extends Record<string, any> = {}>({
   defaultDisplayColumn,
   filterFns,
   sortingFns,
+  isLoading,
 }: {
   aggregationFns: typeof MRT_AggregationFns &
     MRT_TableOptions<TData>['aggregationFns'];
@@ -61,6 +62,7 @@ export const prepareColumns = <TData extends Record<string, any> = {}>({
   defaultDisplayColumn: Partial<MRT_ColumnDef<TData>>;
   filterFns: typeof MRT_FilterFns & MRT_TableOptions<TData>['filterFns'];
   sortingFns: typeof MRT_SortingFns & MRT_TableOptions<TData>['sortingFns'];
+  isLoading?: boolean;
 }): MRT_DefinedColumnDef<TData>[] =>
   columnDefs.map((columnDef) => {
     //assign columnId
@@ -96,6 +98,11 @@ export const prepareColumns = <TData extends Record<string, any> = {}>({
           aggFns.map(
             (fn) => aggregationFns[fn]?.(columnId, leafRows, childRows),
           );
+      }
+
+      if (columnDef?.accessorFn) {
+        columnDef.accessorFn = (...args) =>
+          !isLoading && columnDef.accessorFn!(...args);
       }
 
       //assign filterFns
