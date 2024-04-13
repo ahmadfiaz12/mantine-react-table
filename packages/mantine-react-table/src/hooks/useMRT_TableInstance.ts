@@ -139,12 +139,16 @@ export const useMRT_TableInstance: <TData extends Record<string, any> = {}>(
         defaultDisplayColumn: tableOptions.defaultDisplayColumn ?? {},
         filterFns: tableOptions.filterFns as any,
         sortingFns: tableOptions.sortingFns as any,
+        isLoading:
+          tableOptions.state?.isLoading || tableOptions.state?.showSkeletons,
       }),
     [
       columnFilterFns,
       displayColumns,
       tableOptions.columns,
       tableOptions.state?.columnFilterFns,
+      tableOptions.state?.isLoading,
+      tableOptions.state?.showSkeletons,
     ],
   );
 
