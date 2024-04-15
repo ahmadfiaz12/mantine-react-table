@@ -101,8 +101,9 @@ export const prepareColumns = <TData extends Record<string, any> = {}>({
       }
 
       if (columnDef?.accessorFn) {
+        const originalAccessorFn = columnDef.accessorFn
         columnDef.accessorFn = (...args) =>
-          !isLoading && columnDef.accessorFn!(...args);
+          !isLoading && originalAccessorFn(...args);
       }
 
       //assign filterFns
