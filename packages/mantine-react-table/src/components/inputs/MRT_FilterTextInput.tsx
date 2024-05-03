@@ -41,8 +41,8 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
       localization,
       mantineFilterAutocompleteProps,
       mantineFilterDateInputProps,
-      mantineFilterMultiSelectProps= {
-        clearable: true
+      mantineFilterMultiSelectProps = {
+        clearable: true,
       },
       mantineFilterSelectProps,
       mantineFilterTextInputProps,
@@ -287,7 +287,11 @@ export const MRT_FilterTextInput = <TData extends MRT_RowData>({
           }
         }
       }}
-      rightSection={filterValue?.toString()?.length && multiSelectProps?.clearable ? ClearButton : undefined}
+      rightSection={
+        filterValue?.toString()?.length && multiSelectProps?.clearable
+          ? ClearButton
+          : undefined
+      }
       style={commonProps.style}
     />
   ) : isSelectFilter ? (
