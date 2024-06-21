@@ -46,6 +46,7 @@ export const MRT_TableHeadCellFilterLabel = <
 
   const isRangeFilter =
     columnDef.filterVariant === 'range' ||
+    columnDef.filterVariant === 'date-range' ||
     ['between', 'betweenInclusive', 'inNumberRange'].includes(
       columnDef._filterFn,
     );
